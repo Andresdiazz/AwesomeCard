@@ -20,28 +20,36 @@ class CardFrontLayout {
       this.cardHeight = 0,
       this.textColor});
 
-  Widget layout1() {
+  Widget layout1(BuildContext context) {
+    // Size _size = MediaQuery.of(context).size;
+    // Get the proportionate height as per screen size
+    double getProportionateScreenWidth(double inputWidth) {
+      double screenWidth = MediaQuery.of(context).size.width;
+      return (inputWidth / 414.0) * screenWidth;
+    }
+
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
+      padding: EdgeInsets.fromLTRB(
+          getProportionateScreenWidth(20),
+          getProportionateScreenWidth(16),
+          getProportionateScreenWidth(20),
+          getProportionateScreenWidth(20)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(
-            height: 8,
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Container(
-                height: 30,
+                height: getProportionateScreenWidth(30),
                 child: Center(
                   child: Text(
                     bankName,
                     style: TextStyle(
                         color: textColor,
-                        fontSize: 17,
+                        fontSize: getProportionateScreenWidth(16),
                         fontWeight: FontWeight.w500),
                   ),
                 ),
@@ -52,8 +60,8 @@ class CardFrontLayout {
                   child: new Image.asset(
                     'images/contactless_icon.png',
                     fit: BoxFit.fitHeight,
-                    width: 30.0,
-                    height: 30.0,
+                    width: getProportionateScreenWidth(30.0),
+                    height: getProportionateScreenWidth(30.0),
                     color: textColor,
                     package: 'awesome_card',
                   ),
@@ -63,7 +71,7 @@ class CardFrontLayout {
           ),
           Expanded(
             child: Align(
-              alignment: Alignment.bottomLeft,
+              alignment: Alignment.center,
               child: Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,10 +91,10 @@ class CardFrontLayout {
                               color: textColor,
                               fontWeight: FontWeight.w500,
                               fontFamily: "MavenPro",
-                              fontSize: 22),
+                              fontSize: getProportionateScreenWidth(18)),
                         ),
                         SizedBox(
-                          height: 15,
+                          height: getProportionateScreenWidth(15),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -98,10 +106,10 @@ class CardFrontLayout {
                                   package: 'awesome_card',
                                   color: textColor,
                                   fontFamily: "MavenPro",
-                                  fontSize: 15),
+                                  fontSize: getProportionateScreenWidth(15)),
                             ),
                             SizedBox(
-                              width: 10,
+                              width: getProportionateScreenWidth(10),
                             ),
                             Text(
                               cardExpiry == null || cardExpiry.isEmpty
@@ -112,12 +120,12 @@ class CardFrontLayout {
                                   color: textColor,
                                   fontWeight: FontWeight.w500,
                                   fontFamily: "MavenPro",
-                                  fontSize: 16),
+                                  fontSize: getProportionateScreenWidth(14)),
                             ),
                           ],
                         ),
                         SizedBox(
-                          height: 15,
+                          height: getProportionateScreenWidth(15),
                         ),
                         Text(
                           cardHolderName == null || cardHolderName.isEmpty
@@ -128,9 +136,8 @@ class CardFrontLayout {
                               color: textColor,
                               fontWeight: FontWeight.w500,
                               fontFamily: "MavenPro",
-                              fontSize: 17),
+                              fontSize: getProportionateScreenWidth(14)),
                         ),
-
                       ],
                     ),
                     cardTypeIcon

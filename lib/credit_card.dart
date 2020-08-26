@@ -159,12 +159,13 @@ class _CreditCardState extends State<CreditCard>
                         cardNumber: widget.cardNumber,
                         cardExpiry: widget.cardExpiry,
                         cardHolderName: widget.cardHolderName,
-                        cardTypeIcon: getCardTypeIcon(cardType: widget.cardType,
+                        cardTypeIcon: getCardTypeIcon(
+                            cardType: widget.cardType,
                             cardNumber: widget.cardNumber),
                         cardHeight: cardHeight,
                         cardWidth: cardWidth,
                         textColor: widget.frontTextColor)
-                    .layout1(),
+                    .layout1(context),
           ],
         ),
       ),
